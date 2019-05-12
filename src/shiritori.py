@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import csv
+# MeCab が必要です
 import MeCab
-
 
 class Shiritori:
     # プロパティ一覧
@@ -12,16 +12,12 @@ class Shiritori:
     # self.usedWords
     # self.nextChar
     # dicdata : string(path)
-    kana = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヰウヱヲーヴガギグゲゴザジズゼゾダヂヅデドバビブベボヷヸヹヺパピプペポ"
-
+    kana = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヰウヱヲヴガギグゲゴザジズゼゾダヂヅデドバビブベボヷヸヹヺパピプペポ"
     def __init__(self, dictData):
         with open(dictData) as f:
             # 辞書データ
             reader = csv.reader(f)
             self.data = [row for row in reader]
-            self.initGame()
-
-    def initGame(self):
         # gamemode
         self.gamemode = 0  # 0 : wait
         # mecab
@@ -33,21 +29,29 @@ class Shiritori:
         self.usedWords = []
         # 次に来る文字
         self.nextChar = ""
-
-    def startGame(self):
-        #もしgamemodeが0でない(=すでに始まっている)ならError
-        if self.gamemode != 0:
-            return -1
-        self.initGame()
         self.gamemode = 0  # 1 : player
-
-    def gameOver(self):
-        self.gamemode = 0
-
+    def refrection(self, string):
+        self.usedWords.append(string)
+        self.nextChar = string[-1]
+        return 0
     def nextWord(self):
+        # 次の単語を確認
+        num = -1
+        for i in range(len(self.data)):
+            if (self.data[i][1].startswith(self.nextChar) and self.data[i][1] not in self.usedWords):
+                nonlocal num
+                num = i
+                break
+            self.usedWords.append(self.data[num][1])
+        if (num == -1):
+            self.gamemode = -1 #終了
+            return -1
+        # 消す
+        ret = self.data.pop(num)
         # 次の単語を返す
-        return "called nextWord()"
-
+        self.refrection(ret)
+        self.gamemode = 1
+        return ret
     def inputWord(self, instring):
         # gamemodeの確認
         if self.gamemode == 2:
@@ -59,7 +63,6 @@ class Shiritori:
             return -2
         # ンで終わる ならば(-1)を返す
         if (yomi[-1] in self.ngWords):
-            self.gameOver()
             return -3
         # すでに使われている
         if (yomi in self.usedWords):
@@ -71,16 +74,14 @@ class Shiritori:
         if (yomi[-1] not in self.kana):
             return -6
         # 良いならば
-        self.usedWords.append(yomi)
-        self.nextChar = yomi[-1]
+        self.refrection(yomi)
         self.gamemode = 2  # Computer
         print(yomi, self.nextChar)
         return 0
-
     def showAllMember(self):
-            # print("self.data : ", self.data)
-            print("self.gamemode : ", self.gamemode)
-            print("self.mec", self.mec)
-            print("self.ngWords", self.ngWords)
-            print("self.usedWords", self.usedWords)
-            print("self.nextchar", self.nextChar)
+        # print("self.data : ", self.data)
+        print("self.gamemode : ", self.gamemode)
+        print("self.mec", self.mec)
+        print("self.ngWords", self.ngWords)
+        print("self.usedWords", self.usedWords)
+        print("self.nextchar", self.nextChar)
