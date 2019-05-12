@@ -4,6 +4,13 @@ import MeCab
 
 class Shiritori:
     # dicdata : string(path)
+    # プロパティ一覧
+    # self.data
+    # self.gamemode
+    # self.mec
+    # self.ngWords
+    # self.usedWords
+    # self.nextChar
     def __init__(self, dictData):
         with open(dictData) as f:
             # 辞書データ

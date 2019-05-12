@@ -1,6 +1,6 @@
 import shiritori
 
-testClass = shiritori.Shiritori('./src/名詞.csv')
+testClass = shiritori.Shiritori('./assets/名詞.csv')
 
 testClass.startGame()
 
