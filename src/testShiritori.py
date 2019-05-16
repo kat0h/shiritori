@@ -1,13 +1,12 @@
 import shiritori
 
-testClass = shiritori.Shiritori('./assets/名詞.csv')
+s = shiritori.Shiritori('./assets/名詞.csv')
 
-testClass.startGame()
-
-while (testClass.gamemode != 0):
-    if testClass.gamemode == 1:
-        string = input("YourTurn : ")
-        print(string)
-        result = testClass.inputWord(string)
-        if result == -1:
-            print("err : try again")
+while (s.gamemode != -1):
+    while (True):
+        string = input("your turn ")
+        result = s.inputWord(string)
+        if (result != -1):
+            break
+    print("computer turn ")
+    print(s.nextWord())
