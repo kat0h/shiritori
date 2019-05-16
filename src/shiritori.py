@@ -34,13 +34,30 @@ class Shiritori:
         self.usedWords.append(string)
         self.nextChar = string[-1]
         return 0
+    def checkWord(self, word):
+        # 読みのチェック
+        if (word == ""):
+            return -2
+        # ンで終わる ならば(-1)を返す
+        if (word[-1] in self.ngWords):
+            return -3
+        # すでに使われている
+        if (word in self.usedWords):
+            return -4
+        # 次の文字に合うか
+        if (not self.nextChar == "" and word[0] != self.nextChar):
+            return -5
+        # かな表と照らし合わせる
+        if (word[-1] not in self.kana):
+            return -6
+        return 0
     def nextWord(self):
         # 次の単語を確認
         num = -1
         # 使えるデータを探す
         for i in range(len(self.data)):
             # 次の文字で始まっていて、使われた単語に入っていない
-            if (self.data[i][1].startswith(self.nextChar) and self.data[i][1] not in self.usedWords):
+            if (self.checkWord(self.data[i][1]) == 0):
                 num = i
                 break
         if (num == -1):
@@ -60,21 +77,9 @@ class Shiritori:
         # 日本語読みの取得
         # 最後の文字は改行文字になるのでカット
         yomi = self.mec.parse(instring)[:-1]
-        if (yomi == ""):
-            return -2
-        # ンで終わる ならば(-1)を返す
-        if (yomi[-1] in self.ngWords):
-            return -3
-        # すでに使われている
-        if (yomi in self.usedWords):
-            return -4
-        # 次の文字に合うか
-        if (not self.nextChar == "" and yomi[1] != self.nextChar):
-            return -5
-        # かな表と照らし合わせる
-        if (yomi[-1] not in self.kana):
-            return -6
-        # 良いならば
+        # 読みのチェック
+        if (self.checkWord(yomi) != 0):
+            return -1
         self.refrection(yomi)
         self.gamemode = 2  # Computer
         print(yomi, self.nextChar)
@@ -82,7 +87,7 @@ class Shiritori:
     def showAllMember(self):
         # print("self.data : ", self.data)
         print("self.gamemode : ", self.gamemode)
-        print("self.mec", self.mec)
-        print("self.ngWords", self.ngWords)
+        # print("self.mec", self.mec)
+        # print("self.ngWords", self.ngWords)
         print("self.usedWords", self.usedWords)
         print("self.nextchar", self.nextChar)
