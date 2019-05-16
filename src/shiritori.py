@@ -37,21 +37,22 @@ class Shiritori:
     def nextWord(self):
         # 次の単語を確認
         num = -1
+        # 使えるデータを探す
         for i in range(len(self.data)):
+            # 次の文字で始まっていて、使われた単語に入っていない
             if (self.data[i][1].startswith(self.nextChar) and self.data[i][1] not in self.usedWords):
-                nonlocal num
                 num = i
                 break
-            self.usedWords.append(self.data[num][1])
         if (num == -1):
             self.gamemode = -1 #終了
             return -1
         # 消す
+        print(num)
         ret = self.data.pop(num)
         # 次の単語を返す
-        self.refrection(ret)
+        self.refrection(ret[1])
         self.gamemode = 1
-        return ret
+        return ret[0]
     def inputWord(self, instring):
         # gamemodeの確認
         if self.gamemode == 2:
