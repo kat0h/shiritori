@@ -1,6 +1,7 @@
 import shiritori
 
-s = shiritori.Shiritori('./assets/名詞.csv')
+s = shiritori.Shiritori('./assets/bocchan.csv')
+print("しりとり")
 
 while (s.gamemode != -1):
     while (True):
@@ -10,6 +11,7 @@ while (s.gamemode != -1):
             break
         else:
             print("この単語はダメです")
-    print("computer turn ")
+    print("computer turn ", end="")
     print(s.nextWord())
-    s.showAllMember()
+    print(s.usedWords)
+    # s.showAllMember()

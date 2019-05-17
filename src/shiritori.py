@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import csv
+import random
 # MeCab が必要です
 import MeCab
 
@@ -53,19 +54,20 @@ class Shiritori:
         return 0
     def nextWord(self):
         # 次の単語を確認
-        num = -1
+        num = []
+        print ("")
         # 使えるデータを探す
         for i in range(len(self.data)):
             # 次の文字で始まっていて、使われた単語に入っていない
             if (self.checkWord(self.data[i][1]) == 0):
-                num = i
-                break
-        if (num == -1):
+                num.append(i)
+        if (num == []):
             self.gamemode = -1 #終了
             return -1
         # 消す
-        print(num)
-        ret = self.data.pop(num)
+        # print(num)
+        n = num[random.randrange(0, len(num))]
+        ret = self.data.pop(n)
         # 次の単語を返す
         self.refrection(ret[1])
         self.gamemode = 1
@@ -82,7 +84,7 @@ class Shiritori:
             return -1
         self.refrection(yomi)
         self.gamemode = 2  # Computer
-        print(yomi, self.nextChar)
+        # print(yomi, self.nextChar)
         return 0
     def showAllMember(self):
         # print("self.data : ", self.data)
