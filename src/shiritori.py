@@ -1,3 +1,6 @@
+# shiritori.py
+# made by kato-k (KotaKato)
+# 2019 05 17
 # -*- coding: utf-8 -*-
 import csv
 import random
