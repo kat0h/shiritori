@@ -24,6 +24,7 @@ class Shiritori:
         self.usedWords = []
         # 次に来る文字
         self.nextChar = ""
+        self.gamemode = 1
     # 入力を確認＋反映
     # 戻り値: 0   完了
     #         -1  不正
@@ -85,7 +86,7 @@ class ShiritoriVsComputer:
             if (shiritoriclass.checkWord(self.data[i][1], True) == 0):
                 num.append(i)
         if (num == []):
-            self.gamemode = -1 #終了
+            shiritoriclass.gamemode = -1 #終了
             return -1
         # 消す
         # print(num)
