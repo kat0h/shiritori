@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # shiritori.py
 # made by kato-k (KotaKato)
-# 2019 05 17
+# 2019 05 22
 
 # stderr
 import sys
