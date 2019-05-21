@@ -96,3 +96,5 @@ class ShiritoriVsComputer:
             return ret
         else:
             return ["",""]
+# ああああああ
+
