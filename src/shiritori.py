@@ -9,8 +9,8 @@ import sys
 import MeCab
 
 # for ShiritoriAi
-# import csv
-# import random
+import csv
+import random
 
 class Shiritori:
     kana = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヰウヱヲヴガギグゲゴザジズゼゾダヂヅデドバビブベボヷヸヹヺパピプペポ"
@@ -27,26 +27,31 @@ class Shiritori:
     # 入力を確認＋反映
     # 戻り値: 0   完了
     #         -1  不正
-    def checkWord(self, word):
+    def checkWord(self, word, isSilent=True):
         # 読みのチェック
         if (word == ""):
-            sys.stderr.write("Err : Word is empty\n")
+            if (isSilent == False):
+                sys.stderr.write("Err : Word is empty\n")
             return -1
         # ンで終わる ならば(-1)を返す
         if (word[-1] in self.ngWords):
-            sys.stderr.write("Err : NGWord (example 'ン')\n")
+            if (isSilent == False):
+                sys.stderr.write("Err : NGWord (example 'ン')\n")
             return -2
         # すでに使われている
         if (word in self.usedWords):
-            sys.stderr.write("Err : Word was used\n")
+            if (isSilent == False):
+                sys.stderr.write("Err : Word was used\n")
             return -3
         # 次の文字に合うか
         if (not self.nextChar == "" and word[0] != self.nextChar):
-            sys.stderr.write("Err : Word is not match nextChar\n")
+            if (isSilent == False):
+                sys.stderr.write("Err : Word is not match nextChar\n")
             return -4
         # かな表と照らし合わせる
         if (word[-1] not in self.kana):
-            sys.stderr("Err : Word is not in kana table\n")
+            if (isSilent == False):
+                sys.stderr.write("Err : Word is not in kana table\n")
             return -5
         return 0
     # input : kana
@@ -64,3 +69,30 @@ class Shiritori:
         # print(yomi, self.nextChar)
         return 0
 
+class ShiritoriVsComputer:
+    def __init__(self, path):
+        with open(path) as f:
+            # 辞書データ
+            reader = csv.reader(f)
+            self.data = [row for row in reader]
+    def computerThink(self, shiritoriclass :Shiritori):
+        # 次の単語を確認
+        num = []
+        print ("")
+        # 使えるデータを探す
+        for i in range(len(self.data)):
+            # 次の文字で始まっていて、使われた単語に入っていない
+            if (shiritoriclass.checkWord(self.data[i][1], True) == 0):
+                num.append(i)
+        if (num == []):
+            self.gamemode = -1 #終了
+            return -1
+        # 消す
+        # print(num)
+        n = num[random.randrange(0, len(num))]
+        if (shiritoriclass.inputWord(self.data[n][1]) == 0):
+            ret = self.data.pop(n)
+            # 次の単語(漢字)を返す
+            return ret[0]
+        else:
+            return -1

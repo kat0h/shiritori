@@ -1,7 +1,10 @@
 import shiritori
 
-shiritori = shiritori.Shiritori()
+shiritoriClass = shiritori.Shiritori()
+ai = shiritori.ShiritoriVsComputer("assets/bocchan.csv")
 
 while (1):
-    shiritori.inputWord(input("日本語で文字を入れてください "))
-    print(shiritori.usedWords)
+    shiritoriClass.inputWord(input("日本語で文字を入れてください "))
+    print(shiritoriClass.usedWords)
+    print(ai.computerThink(shiritoriClass))
+    print(shiritoriClass.usedWords)
