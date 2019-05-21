@@ -1,0 +1,38 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+MeCab	oldshiritori.py	/^import MeCab$/;"	i
+MeCab	shiritori.py	/^import MeCab$/;"	i
+MeCab	testMecab.py	/^import MeCab$/;"	i
+Shiritori	oldshiritori.py	/^class Shiritori:$/;"	c
+Shiritori	shiritori.py	/^class Shiritori:$/;"	c
+ShiritoriVsComputer	shiritori.py	/^class ShiritoriVsComputer(Shiritori):$/;"	c
+__init__	oldshiritori.py	/^    def __init__(self, dictData):$/;"	m	class:Shiritori
+__init__	shiritori.py	/^    def __init__(self):$/;"	m	class:Shiritori
+__init__	shiritori.py	/^    def __init__(self, path):$/;"	m	class:ShiritoriVsComputer
+checkWord	oldshiritori.py	/^    def checkWord(self, word):$/;"	m	class:Shiritori
+checkWord	shiritori.py	/^    def checkWord(self, word):$/;"	m	class:Shiritori
+csv	csvtest.py	/^import csv$/;"	i
+csv	oldshiritori.py	/^import csv$/;"	i
+inputWord	oldshiritori.py	/^    def inputWord(self, instring):$/;"	m	class:Shiritori
+inputWord	shiritori.py	/^    def inputWord(self, instring):$/;"	m	class:Shiritori
+kana	oldshiritori.py	/^    kana = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヰウヱヲヴガギグゲゴザジズゼゾダヂヅデドバビブベボヷヸヹヺパピプペポ"$/;"	v	class:Shiritori
+kana	shiritori.py	/^    kana = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヰウヱヲヴガギグゲゴザジズゼゾダヂヅデドバビブベボヷヸヹヺパピプペポ"$/;"	v	class:Shiritori
+l	csvtest.py	/^    l = [row for row in reader]$/;"	v
+m	testMecab.py	/^m = MeCab.Tagger("-Oyomi")$/;"	v
+nextWord	oldshiritori.py	/^    def nextWord(self):$/;"	m	class:Shiritori
+nextWord	shiritori.py	/^    def nextWord(self):$/;"	m	class:ShiritoriVsComputer
+pprint	csvtest.py	/^import pprint$/;"	i
+random	oldshiritori.py	/^import random$/;"	i
+reader	csvtest.py	/^    reader = csv.reader(f)$/;"	v
+refrection	oldshiritori.py	/^    def refrection(self, string):$/;"	m	class:Shiritori
+refrection	shiritori.py	/^    def refrection(self, word):$/;"	m	class:Shiritori
+shiritori	testShiritori.py	/^import shiritori$/;"	i
+shiritori	testShiritori.py	/^shiritori = shiritori.Shiritori()$/;"	v
+showAllMember	oldshiritori.py	/^    def showAllMember(self):$/;"	m	class:Shiritori
+sys	shiritori.py	/^import sys$/;"	i
+sys	testMecab.py	/^import sys$/;"	i
+text	testMecab.py	/^text = input(">>")$/;"	v

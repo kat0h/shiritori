@@ -79,7 +79,6 @@ class ShiritoriVsComputer:
     def computerThink(self, shiritoriclass :Shiritori):
         # 次の単語を確認
         num = []
-        print ("")
         # 使えるデータを探す
         for i in range(len(self.data)):
             # 次の文字で始まっていて、使われた単語に入っていない
@@ -93,7 +92,7 @@ class ShiritoriVsComputer:
         n = num[random.randrange(0, len(num))]
         if (shiritoriclass.inputWord(self.data[n][1]) == 0):
             ret = self.data.pop(n)
-            # 次の単語(漢字)を返す
-            return ret[0]
+            # 次の単語を返す
+            return ret
         else:
-            return -1
+            return ["",""]
