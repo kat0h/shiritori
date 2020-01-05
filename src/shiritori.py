@@ -64,8 +64,9 @@ class Shiritori:
         # 最後の文字は改行文字になるのでカット
         yomi = self.mec.parse(instring)[:-1]
         # 読みのチェック
-        if (self.checkWord(yomi) != 0):
-            return -1
+        a = self.checkWord(yomi)
+        if (a != 0):
+            return a
         self.refrection(yomi)
         # print(yomi, self.nextChar)
         return 0
