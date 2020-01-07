@@ -64,9 +64,14 @@ class Shiritori:
         # 最後の文字は改行文字になるのでカット
         yomi = self.mec.parse(instring)[:-1]
         # 読みのチェック
+<<<<<<< HEAD
         a = self.checkWord(yomi)
         if (a != 0):
             return a
+=======
+        if (self.checkWord(yomi) != 0):
+            return -1
+>>>>>>> origin/master
         self.refrection(yomi)
         # print(yomi, self.nextChar)
         return 0
@@ -97,3 +102,8 @@ class ShiritoriVsComputer:
             return ret
         else:
             return ["",""]
+<<<<<<< HEAD
+=======
+# ああああああ
+
+>>>>>>> origin/master
